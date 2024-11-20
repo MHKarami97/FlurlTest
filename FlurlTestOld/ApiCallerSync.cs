@@ -16,7 +16,7 @@ namespace FlurlTestOld
             _client = new TestSync(api);
         }
 
-        public OutputModel GetSync(object query)
+        public OutputModel GetSync(object query = null)
         {
             try
             {
@@ -29,8 +29,22 @@ namespace FlurlTestOld
                 throw new Exception("error", ex);
             }
         }
+        
+        public OutputModel GetSyncWithResult(object query = null)
+        {
+            try
+            {
+                var result = _client.SendAsHttpGetSyncWithResult<OutputModel>("/Customer/Get", query, Header);
 
-        public OutputModel GetSyncWithConfigureAwait(object query)
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error", ex);
+            }
+        }
+
+        public OutputModel GetSyncWithConfigureAwait(object query = null)
         {
             try
             {

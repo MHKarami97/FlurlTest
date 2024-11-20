@@ -17,11 +17,11 @@ namespace FlurlTestNew
             _client = new TestAsync(api);
         }
 
-        public async Task<OutputModel> GetAsync(int customerId)
+        public async Task<OutputModel> GetAsync(object query = null)
         {
             try
             {
-                var result = await _client.SendAsHttpGetAsync<OutputModel>("/Customer/Get", customerId, Header);
+                var result = await _client.SendAsHttpGetAsync<OutputModel>("/Customer/Get", query, Header);
 
                 return result;
             }

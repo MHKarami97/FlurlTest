@@ -33,6 +33,26 @@ namespace BaseNew
                 throw new Exception(error, ex);
             }
         }
+        
+        public TResponse SendAsHttpGetSyncWithResult<TResponse>(string url, object query = null, Dictionary<string, string> headers = null)
+        {
+            try
+            {
+                return _baseHttpAddress
+                    .WithHeaders(headers)
+                    .WithTimeout(TimeSpan.FromSeconds(TimeOutOnSecond))
+                    .AppendPathSegment(url)
+                    .SetQueryParams(query)
+                    .GetJsonAsync<TResponse>()
+                    .Result;
+            }
+            catch (FlurlHttpException ex)
+            {
+                var error = ex.GetResponseStringAsync().Result ?? string.Empty;
+
+                throw new Exception(error, ex);
+            }
+        }
 
         public TResponse SendAsHttpGetSyncWithConfigureAwait<TResponse>(string url, object query = null, Dictionary<string, string> headers = null)
         {

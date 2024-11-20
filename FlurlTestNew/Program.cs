@@ -1,4 +1,5 @@
 ﻿using System;
+using Nito.AsyncEx;
 
 namespace FlurlTestNew
 {
@@ -10,7 +11,8 @@ namespace FlurlTestNew
 
             try
             {
-                Console.WriteLine("Test Flurl 4.0.2 on .net framework 4.6.2");
+                const string version = "2.4.2";
+                Console.WriteLine($"Test Flurl {version} on .net framework 4.6.2");
 
                 Console.WriteLine("Thread count:");
                 var threadCount = Console.ReadLine();
@@ -31,52 +33,68 @@ namespace FlurlTestNew
                 Console.WriteLine("write y to exit");
                 Console.WriteLine("--------------------------");
 
-                var isFirstTime = true;
-                do
+                Console.WriteLine("1: Sync\n" +
+                                  "2: Async\n" +
+                                  "3: Async with .ConfigureAwait(false)\n" +
+                                  "4: Sync with .ConfigureAwait(false)\n" +
+                                  "5: Sync with .Result\n" +
+                                  "6: Sync with AsyncContext.Run\n" +
+                                  "7: Run All");
+                type = Console.ReadLine();
+
+                LoadTestRunner loadTestRunner;
+
+                Console.WriteLine("===========================");
+                Console.WriteLine("Wait Until Test Complete...");
+
+                switch (type)
                 {
-                    if (!isFirstTime)
-                    {
-                        Console.WriteLine("--------------------------");
-                        Console.WriteLine("--------------------------");
-                        Console.WriteLine("--------------------------");
-                    }
+                    case "1":
+                        loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+                        loadTestRunner.RunSync();
+                        break;
 
-                    Console.WriteLine("1: Sync, 2: Async, 3: Async with .ConfigureAwait(false), 4: Sync with .ConfigureAwait(false)");
-                    type = Console.ReadLine();
+                    case "2":
+                        loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+                        loadTestRunner.RunAsync().GetAwaiter().GetResult();
+                        break;
 
-                    LoadTestRunner loadTestRunner;
+                    case "3":
+                        loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+                        loadTestRunner.RunAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                        break;
 
-                    switch (type)
-                    {
-                        case "1":
-                            loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
-                            loadTestRunner.RunSync();
-                            break;
+                    case "4":
+                        loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+                        loadTestRunner.RunSyncWithConfigureAwait();
+                        break;
 
-                        case "2":
-                            loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
-                            loadTestRunner.RunAsync().GetAwaiter().GetResult();
-                            break;
+                    case "5":
+                        loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+                        loadTestRunner.RunSyncWithResult();
+                        break;
 
-                        case "3":
-                            loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
-                            loadTestRunner.RunAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-                            break;
+                    case "6":
+                        loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+                        AsyncContext.Run(() => loadTestRunner.RunAsync());
+                        break;
 
-                        case "4":
-                            loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
-                            loadTestRunner.RunSyncWithConfigureAwait();
-                            break;
+                    case "7":
+                        loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+                        loadTestRunner.RunSync();
+                        loadTestRunner.RunSyncWithConfigureAwait();
+                        loadTestRunner.RunSyncWithResult();
+                        AsyncContext.Run(() => loadTestRunner.RunAsync());
+                        loadTestRunner.RunAsync().GetAwaiter().GetResult();
+                        loadTestRunner.RunAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                        break;
 
-                        case "y":
-                            break;
+                    case "y":
+                        break;
 
-                        default:
-                            throw new Exception("not valid type");
-                    }
-
-                    isFirstTime = false;
-                } while (type != "y");
+                    default:
+                        throw new Exception("not valid type");
+                }
             }
             catch (Exception e)
             {
