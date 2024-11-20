@@ -56,12 +56,12 @@ namespace FlurlTestOld
 
                     case "2":
                         loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
-                        loadTestRunner.RunAsync().GetAwaiter().GetResult();
+                        loadTestRunner.RunAsync("Async").GetAwaiter().GetResult();
                         break;
 
                     case "3":
                         loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
-                        loadTestRunner.RunAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                        loadTestRunner.RunAsync("AsyncWithConfigureAwait").ConfigureAwait(false).GetAwaiter().GetResult();
                         break;
 
                     case "4":
@@ -76,7 +76,7 @@ namespace FlurlTestOld
 
                     case "6":
                         loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
-                        AsyncContext.Run(() => loadTestRunner.RunAsync());
+                        AsyncContext.Run(() => loadTestRunner.RunAsync("AsyncWithAsyncContext"));
                         break;
 
                     case "7":
@@ -84,9 +84,9 @@ namespace FlurlTestOld
                         loadTestRunner.RunSync();
                         loadTestRunner.RunSyncWithConfigureAwait();
                         loadTestRunner.RunSyncWithResult();
-                        AsyncContext.Run(() => loadTestRunner.RunAsyncWithAsyncContext());
-                        loadTestRunner.RunAsync().GetAwaiter().GetResult();
-                        loadTestRunner.RunAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                        AsyncContext.Run(() => loadTestRunner.RunAsync("AsyncWithAsyncContext"));
+                        loadTestRunner.RunAsync("Async").GetAwaiter().GetResult();
+                        loadTestRunner.RunAsync("AsyncWithConfigureAwait").ConfigureAwait(false).GetAwaiter().GetResult();
                         break;
 
                     case "y":
