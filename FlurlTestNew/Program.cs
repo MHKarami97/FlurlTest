@@ -6,6 +6,8 @@ namespace FlurlTestNew
     {
         public static void Main(string[] args)
         {
+            string type = null;
+
             try
             {
                 Console.WriteLine("Test Flurl 4.0.2 on .net framework 4.6.2");
@@ -18,19 +20,31 @@ namespace FlurlTestNew
                     throw new Exception("thread count is not valid");
                 }
 
-                Console.WriteLine("write y to exit");
+                Console.WriteLine("Show log (true/false):");
+                var showLog = Console.ReadLine();
 
-                string type;
+                if (string.IsNullOrEmpty(showLog) || !bool.TryParse(showLog, out var log))
+                {
+                    throw new Exception("show log is not valid");
+                }
+
+                Console.WriteLine("write y to exit");
+                Console.WriteLine("--------------------------");
+
+                var isFirstTime = true;
                 do
                 {
-                    Console.WriteLine("=-------------=");
-                    Console.WriteLine("=-------------=");
-                    Console.WriteLine("=-------------=");
+                    if (!isFirstTime)
+                    {
+                        Console.WriteLine("--------------------------");
+                        Console.WriteLine("--------------------------");
+                        Console.WriteLine("--------------------------");
+                    }
 
                     Console.WriteLine("1: Sync, 2: Async, 3: Async with .ConfigureAwait(false), 4: Sync with .ConfigureAwait(false)");
                     type = Console.ReadLine();
 
-                    var loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133");
+                    var loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
 
                     switch (type)
                     {
@@ -56,6 +70,8 @@ namespace FlurlTestNew
                         default:
                             throw new Exception("not valid type");
                     }
+
+                    isFirstTime = false;
                 } while (type != "y");
             }
             catch (Exception e)
@@ -63,8 +79,11 @@ namespace FlurlTestNew
                 Console.WriteLine(e);
             }
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadLine();
+            if (type != "y")
+            {
+                Console.WriteLine("Press any key to exit...");
+                Console.ReadLine();
+            }
         }
     }
 }

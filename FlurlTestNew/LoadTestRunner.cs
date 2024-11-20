@@ -13,10 +13,12 @@ namespace FlurlTestNew
         private readonly ApiCallerSync _callerSync;
         private readonly ApiCallerAsync _callerAsync;
         private readonly int _threadCount;
+        private readonly bool _showLog;
 
-        public LoadTestRunner(int threadCount, string api)
+        public LoadTestRunner(int threadCount, string api, bool showLog)
         {
             _threadCount = threadCount;
+            _showLog = showLog;
             _callerSync = new ApiCallerSync(api);
             _callerAsync = new ApiCallerAsync(api);
         }
@@ -32,7 +34,6 @@ namespace FlurlTestNew
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                Console.Clear();
                 Console.WriteLine("Wait Until Test Complete...");
 
                 var tasks = new List<Task>();
@@ -54,13 +55,18 @@ namespace FlurlTestNew
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine(ex);
+                            if (_showLog)
+                                Console.WriteLine(ex);
 
                             errors.Enqueue(ex);
                             responses.Enqueue("error");
                         }
 
                         localStopwatch.Stop();
+
+                        if (_showLog)
+                            Console.WriteLine($"ThreadId: {Thread.CurrentThread.ManagedThreadId} , Elapsed: {localStopwatch.Elapsed}");
+
                         responseTimes.Enqueue(localStopwatch.Elapsed);
                     }));
                 }
@@ -101,7 +107,6 @@ namespace FlurlTestNew
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                Console.Clear();
                 Console.WriteLine("Wait Until Test Complete...");
 
                 var tasks = new List<Task>();
@@ -123,13 +128,18 @@ namespace FlurlTestNew
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine(ex);
+                            if (_showLog)
+                                Console.WriteLine(ex);
 
                             errors.Enqueue(ex);
                             responses.Enqueue("error");
                         }
 
                         localStopwatch.Stop();
+
+                        if (_showLog)
+                            Console.WriteLine($"ThreadId: {Thread.CurrentThread.ManagedThreadId} , Elapsed: {localStopwatch.Elapsed}");
+
                         responseTimes.Enqueue(localStopwatch.Elapsed);
                     }));
                 }
@@ -170,7 +180,6 @@ namespace FlurlTestNew
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                Console.Clear();
                 Console.WriteLine("Wait Until Test Complete...");
 
                 var tasks = new List<Task>();
@@ -192,13 +201,18 @@ namespace FlurlTestNew
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine(ex);
+                            if (_showLog)
+                                Console.WriteLine(ex);
 
                             errors.Enqueue(ex);
                             responses.Enqueue("error");
                         }
 
                         localStopwatch.Stop();
+
+                        if (_showLog)
+                            Console.WriteLine($"ThreadId: {Thread.CurrentThread.ManagedThreadId} , Elapsed: {localStopwatch.Elapsed}");
+
                         responseTimes.Enqueue(localStopwatch.Elapsed);
                     }));
                 }
