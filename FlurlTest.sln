@@ -8,6 +8,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseOld", "BaseOld\BaseOld.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlurlTestOld", "FlurlTestOld\FlurlTestOld.csproj", "{AEC1955F-FCE3-4BD6-8DB5-A558811A9784}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{89B03AA9-CF54-4DC7-A82A-C103E1AED089}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		mockoon_flurl.json = mockoon_flurl.json
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
