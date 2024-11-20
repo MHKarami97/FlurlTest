@@ -39,7 +39,8 @@ namespace FlurlTestOld
                                   "4: Sync with .ConfigureAwait(false)\n" +
                                   "5: Sync with .Result\n" +
                                   "6: Sync with AsyncContext.Run\n" +
-                                  "7: Run All");
+                                  "7: Run All\n" +
+                                  "8: Run All Two time");
                 type = Console.ReadLine();
 
                 LoadTestRunner loadTestRunner;
@@ -81,12 +82,32 @@ namespace FlurlTestOld
 
                     case "7":
                         loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+
                         loadTestRunner.RunSync();
                         loadTestRunner.RunSyncWithConfigureAwait();
                         loadTestRunner.RunSyncWithResult();
                         AsyncContext.Run(() => loadTestRunner.RunAsync("AsyncWithAsyncContext"));
                         loadTestRunner.RunAsync("Async").GetAwaiter().GetResult();
                         loadTestRunner.RunAsync("AsyncWithConfigureAwait").ConfigureAwait(false).GetAwaiter().GetResult();
+                        break;
+
+                    case "8":
+                        loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+
+                        loadTestRunner.RunSync();
+                        loadTestRunner.RunSyncWithConfigureAwait();
+                        loadTestRunner.RunSyncWithResult();
+                        AsyncContext.Run(() => loadTestRunner.RunAsync("AsyncWithAsyncContext"));
+                        loadTestRunner.RunAsync("Async").GetAwaiter().GetResult();
+                        loadTestRunner.RunAsync("AsyncWithConfigureAwait").ConfigureAwait(false).GetAwaiter().GetResult();
+
+                        loadTestRunner.RunSync();
+                        loadTestRunner.RunSyncWithConfigureAwait();
+                        loadTestRunner.RunSyncWithResult();
+                        AsyncContext.Run(() => loadTestRunner.RunAsync("AsyncWithAsyncContext"));
+                        loadTestRunner.RunAsync("Async").GetAwaiter().GetResult();
+                        loadTestRunner.RunAsync("AsyncWithConfigureAwait").ConfigureAwait(false).GetAwaiter().GetResult();
+
                         break;
 
                     case "y":
