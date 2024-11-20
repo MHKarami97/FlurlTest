@@ -9,16 +9,27 @@ namespace FlurlTestOld
             try
             {
                 Console.WriteLine("Test Flurl 2.4.2 on .net framework 4.6.2");
-
-                Console.WriteLine("1: Sync, 2: Async, 3: Async with .ConfigureAwait(false), 4: Sync with .ConfigureAwait(false)");
-                var type = Console.ReadLine();
-
                 Console.WriteLine("Thread count:");
                 var threadCount = Console.ReadLine();
 
-                if (threadCount != null)
+                if (string.IsNullOrEmpty(threadCount) || !int.TryParse(threadCount, out var threads))
                 {
-                    var loadTestRunner = new LoadTestRunner(int.Parse(threadCount), "http://localhost:3133");
+                    throw new Exception("thread count is not valid");
+                }
+
+                Console.WriteLine("write y to exit");
+
+                string type;
+                do
+                {
+                    Console.WriteLine("=-------------=");
+                    Console.WriteLine("=-------------=");
+                    Console.WriteLine("=-------------=");
+
+                    Console.WriteLine("1: Sync, 2: Async, 3: Async with .ConfigureAwait(false), 4: Sync with .ConfigureAwait(false)");
+                    type = Console.ReadLine();
+
+                    var loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133");
 
                     switch (type)
                     {
@@ -41,11 +52,7 @@ namespace FlurlTestOld
                         default:
                             throw new Exception("not valid type");
                     }
-                }
-                else
-                {
-                    throw new Exception("thread count is null");
-                }
+                } while (type != "y");
             }
             catch (Exception e)
             {

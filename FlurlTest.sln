@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlurlTest", "FlurlTest\FlurlTest.csproj", "{1AEF5809-E0D4-4013-8BFB-5020D2288453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlurlTestNew", "FlurlTestNew\FlurlTestNew.csproj", "{1AEF5809-E0D4-4013-8BFB-5020D2288453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "Base\Base.csproj", "{50C23046-533F-4E09-B6FF-FA07B711CDCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseNew", "BaseNew\BaseNew.csproj", "{50C23046-533F-4E09-B6FF-FA07B711CDCE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseOld", "BaseOld\BaseOld.csproj", "{E9F52603-FFD5-4B9B-B7AD-EF72075221D4}"
 EndProject

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Flurl.Http;
 
-namespace Base
+namespace BaseNew
 {
     public class TestAsync
     {

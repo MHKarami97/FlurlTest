@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Flurl.Http;
 
-namespace Base
+namespace BaseNew
 {
     public class TestSync
     {

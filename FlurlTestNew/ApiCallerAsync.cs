@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Base;
+using BaseNew;
 
-namespace FlurlTest
+namespace FlurlTestNew
 {
     public sealed class ApiCallerAsync
     {

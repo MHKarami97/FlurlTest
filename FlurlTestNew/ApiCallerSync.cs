@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Base;
+using BaseNew;
 
-namespace FlurlTest
+namespace FlurlTestNew
 {
     public sealed class ApiCallerSync
     {

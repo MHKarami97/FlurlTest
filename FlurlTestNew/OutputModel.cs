@@ -1,4 +1,4 @@
-﻿namespace FlurlTest
+﻿namespace FlurlTestNew
 {
     public class OutputModel
     {

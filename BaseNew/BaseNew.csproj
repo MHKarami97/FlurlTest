@@ -8,8 +8,8 @@
         <ProjectGuid>{50C23046-533F-4E09-B6FF-FA07B711CDCE}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Base</RootNamespace>
-        <AssemblyName>Base</AssemblyName>
+        <RootNamespace>BaseNew</RootNamespace>
+        <AssemblyName>BaseNew</AssemblyName>
         <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
