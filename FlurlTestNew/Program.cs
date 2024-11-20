@@ -11,7 +11,7 @@ namespace FlurlTestNew
 
             try
             {
-                const string version = "2.4.2";
+                const string version = "4.0.2";
                 Console.WriteLine($"Test Flurl {version} on .net framework 4.6.2");
 
                 Console.WriteLine("Thread count:");
@@ -84,7 +84,7 @@ namespace FlurlTestNew
                         loadTestRunner.RunSync();
                         loadTestRunner.RunSyncWithConfigureAwait();
                         loadTestRunner.RunSyncWithResult();
-                        AsyncContext.Run(() => loadTestRunner.RunAsync());
+                        AsyncContext.Run(() => loadTestRunner.RunAsyncWithAsyncContext());
                         loadTestRunner.RunAsync().GetAwaiter().GetResult();
                         loadTestRunner.RunAsync().ConfigureAwait(false).GetAwaiter().GetResult();
                         break;

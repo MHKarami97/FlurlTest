@@ -84,7 +84,7 @@ namespace FlurlTestOld
                         loadTestRunner.RunSync();
                         loadTestRunner.RunSyncWithConfigureAwait();
                         loadTestRunner.RunSyncWithResult();
-                        AsyncContext.Run(() => loadTestRunner.RunAsync());
+                        AsyncContext.Run(() => loadTestRunner.RunAsyncWithAsyncContext());
                         loadTestRunner.RunAsync().GetAwaiter().GetResult();
                         loadTestRunner.RunAsync().ConfigureAwait(false).GetAwaiter().GetResult();
                         break;
