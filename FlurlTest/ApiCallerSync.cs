@@ -16,11 +16,11 @@ namespace FlurlTest
             _client = new TestSync(api);
         }
 
-        public OutputModel GetSync(int customerId)
+        public OutputModel GetSync(object query)
         {
             try
             {
-                var result = _client.SendAsHttpGetSync<OutputModel>("/Customer/Get", customerId, Header);
+                var result = _client.SendAsHttpGetSync<OutputModel>("/Customer/Get", query, Header);
 
                 return result;
             }
@@ -30,11 +30,11 @@ namespace FlurlTest
             }
         }
 
-        public OutputModel GetSyncWithConfigureAwait(int customerId)
+        public OutputModel GetSyncWithConfigureAwait(object query)
         {
             try
             {
-                var result = _client.SendAsHttpGetSyncWithConfigureAwait<OutputModel>("/Customer/Get", customerId, Header);
+                var result = _client.SendAsHttpGetSyncWithConfigureAwait<OutputModel>("/Customer/Get", query, Header);
 
                 return result;
             }

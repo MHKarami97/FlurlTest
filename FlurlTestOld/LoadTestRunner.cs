@@ -75,10 +75,10 @@ namespace FlurlTestOld
                 Console.WriteLine($"Total responses: {responses.Count}");
                 Console.WriteLine($"Total exception: {errors.Count}");
                 Console.WriteLine("----------");
-                Console.WriteLine($"Total elapsed time: {stopwatch.Elapsed}");
                 Console.WriteLine($"Avg responseTime: {responseTimes.Average(r => r.TotalMilliseconds)}");
                 Console.WriteLine($"Max responseTime: {responseTimes.Max(r => r.TotalMilliseconds)}");
                 Console.WriteLine($"Min responseTime: {responseTimes.Min(r => r.TotalMilliseconds)}");
+                Console.WriteLine($"Total elapsed time: {stopwatch.Elapsed}");
                 Console.WriteLine("----------");
                 Console.WriteLine($"Total ok responses: {responses.Count(r => r == "ok")}");
                 Console.WriteLine($"Total error responses: {responses.Count(r => r == "error")}");
@@ -144,10 +144,10 @@ namespace FlurlTestOld
                 Console.WriteLine($"Total responses: {responses.Count}");
                 Console.WriteLine($"Total exception: {errors.Count}");
                 Console.WriteLine("----------");
-                Console.WriteLine($"Total elapsed time: {stopwatch.Elapsed}");
                 Console.WriteLine($"Avg responseTime: {responseTimes.Average(r => r.TotalMilliseconds)}");
                 Console.WriteLine($"Max responseTime: {responseTimes.Max(r => r.TotalMilliseconds)}");
                 Console.WriteLine($"Min responseTime: {responseTimes.Min(r => r.TotalMilliseconds)}");
+                Console.WriteLine($"Total elapsed time: {stopwatch.Elapsed}");
                 Console.WriteLine("----------");
                 Console.WriteLine($"Total ok responses: {responses.Count(r => r == "ok")}");
                 Console.WriteLine($"Total error responses: {responses.Count(r => r == "error")}");
@@ -213,10 +213,10 @@ namespace FlurlTestOld
                 Console.WriteLine($"Total responses: {responses.Count}");
                 Console.WriteLine($"Total exception: {errors.Count}");
                 Console.WriteLine("----------");
-                Console.WriteLine($"Total elapsed time: {stopwatch.Elapsed}");
                 Console.WriteLine($"Avg responseTime: {responseTimes.Average(r => r.TotalMilliseconds)}");
                 Console.WriteLine($"Max responseTime: {responseTimes.Max(r => r.TotalMilliseconds)}");
                 Console.WriteLine($"Min responseTime: {responseTimes.Min(r => r.TotalMilliseconds)}");
+                Console.WriteLine($"Total elapsed time: {stopwatch.Elapsed}");
                 Console.WriteLine("----------");
                 Console.WriteLine($"Total ok responses: {responses.Count(r => r == "ok")}");
                 Console.WriteLine($"Total error responses: {responses.Count(r => r == "error")}");
