@@ -54,7 +54,8 @@ return _baseHttpAddress
         .GetAwaiter().GetResult();
 ```
 
-If add `ConfigureAwait(false)` problem will be solved.  
+If add `ConfigureAwait(false)` problem will be solved on low concurrency.  
+If we increase threads more than 100, we get errors again. 
 
 ```csharp
 return _baseHttpAddress
@@ -65,3 +66,5 @@ return _baseHttpAddress
         .GetJsonAsync<TResponse>()
         .ConfigureAwait(false).GetAwaiter().GetResult();
 ```
+
+*This problem happened only on first call, for example if call sync and wait to complete and then again call sync, we don't get any errors*

@@ -44,23 +44,27 @@ namespace FlurlTestOld
                     Console.WriteLine("1: Sync, 2: Async, 3: Async with .ConfigureAwait(false), 4: Sync with .ConfigureAwait(false)");
                     type = Console.ReadLine();
 
-                    var loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
+                    LoadTestRunner loadTestRunner;
 
                     switch (type)
                     {
                         case "1":
+                            loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
                             loadTestRunner.RunSync();
                             break;
 
                         case "2":
+                            loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
                             loadTestRunner.RunAsync().GetAwaiter().GetResult();
                             break;
 
                         case "3":
+                            loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
                             loadTestRunner.RunAsync().ConfigureAwait(false).GetAwaiter().GetResult();
                             break;
 
                         case "4":
+                            loadTestRunner = new LoadTestRunner(threads, "http://localhost:3133", log);
                             loadTestRunner.RunSyncWithConfigureAwait();
                             break;
 
