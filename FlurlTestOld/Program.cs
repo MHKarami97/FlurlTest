@@ -49,6 +49,9 @@ namespace FlurlTestOld
                             loadTestRunner.RunSyncWithConfigureAwait();
                             break;
 
+                        case "y":
+                            break;
+
                         default:
                             throw new Exception("not valid type");
                     }
